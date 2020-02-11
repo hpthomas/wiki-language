@@ -1,0 +1,11 @@
+LingBash is a lanaguage learning tool designed to help users with vocabulary and reading comprehension. 
+Try to read wikipedia articles in your target language without viewing translations.
+The articles are displayed section-by-section. If you reach a section you don't fully understand, you can view a translation into your native language.
+Try to read as much as you can without translating!
+
+
+This demo page provides a preview of it's core functionality. 
+To view translations, you must first sign in or continue as a guest. 
+Then, in preferences, select your target language (the language you are learning) and your home language. 
+Finally, simply search for articles in your target language! 
+

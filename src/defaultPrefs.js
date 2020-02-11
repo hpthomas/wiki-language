@@ -1,2 +1,2 @@
-let defaultPrefs = {src:"en",target:"es"};
+let defaultPrefs = {src:"es",target:"en"};
 export default defaultPrefs;

@@ -15,7 +15,7 @@ let TopBar = props=> (
 						<button className="btn btn-primary">Home</button>
 					</Link>
 
-					<Link to={'/home'}>
+					<Link to={'/search'}>
 						<button className="btn btn-primary">Search</button>
 					</Link>
 					{props.user? 
@@ -49,7 +49,7 @@ let TopBar = props=> (
 				</nav>
 				</div>
 				<Route exact path='/' component = {Landing} />
-				<Route path='/home' component = {SearchBar} />
+				<Route path='/search' component = {SearchBar} />
 				<Route path='/login' component = {Login} />
 				<Route path='/profile' component = {Profile} />
 				<Route path='/signup' component = {Signup} />

@@ -18,7 +18,11 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.landing {
 
+}
+.landing p {
+}
 .App-link {
   color: #61dafb;
 }

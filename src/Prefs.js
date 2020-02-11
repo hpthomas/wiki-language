@@ -34,7 +34,7 @@ class Prefs extends React.Component {
 	render() {
 		return  (
 			<div className="form-group col-6">
-				<label> Source Language (articles will appear in this language):</label>
+				<label> Goal Language (articles will appear in this language):</label>
 				<select value={this.state.src} onChange={this.change.bind(this)} className="form-control" name="src">
 					{languages.map((lang,i) =>  (
 						<option key={i} value={lang.abbr}>
@@ -43,7 +43,7 @@ class Prefs extends React.Component {
 					)}
 				</select>
 
-				<label > Target Language (articles will be translated into this language):</label>
+				<label > Home Language (articles will be translated into this language):</label>
 				<select value={this.state.target} onChange={this.change.bind(this)} className="form-control" name="target">
 					{languages.map((lang,i) =>  (
 						<option key={i} value={lang.abbr}>

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 class SignupForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {email:"", pass:""};
+		this.state = {email:"", pass:"", showWelcome:false};
 	}
 	submit(event) {
 		event.preventDefault();

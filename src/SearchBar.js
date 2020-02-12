@@ -1,6 +1,7 @@
 import React from 'react';
 import Results from "./Results";
 import Prefs from "./Prefs";
+import Landing from "./Landing";
 import {connect} from 'react-redux';
 import store from './store';
 import gotPrefsAction from './actions/gotPrefsAction';
@@ -96,6 +97,7 @@ class SearchBar extends React.Component {
     }
 
     render() {
+        console.log(this.state.results);
         return (
             <div id="wrap">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -123,6 +125,7 @@ class SearchBar extends React.Component {
                     : null
                 }
                 <Results prefs={this.props.prefs} items={this.state.results} />
+                {this.state.results && this.state.results.length>0? null : <Landing />}
             </div>
         );
     }

@@ -4,11 +4,12 @@ import loginAction from './actions/loginAction';
 import {connect} from 'react-redux';
 import store from './store';
 import gotPrefsAction from './actions/gotPrefsAction';
+import Welcome from './Welcome';
 
 class LoginForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {email:"", pass:"", error:null};
+		this.state = {email:"", pass:"", error:null, welcome:false};
 	}
 	submit(event) {
 		event.preventDefault();
@@ -30,28 +31,30 @@ class LoginForm extends React.Component {
 	}
 	guestLogin() {
 		this.props.firebase.login(null,null).then(res=>{
-			this.setState({email:"",pass:""});
-			this.props.history.push("/home");	
-			console.log(res);
-			console.log(res.user);
 			this.props.setLogin(res.user);
+			this.setState({email:"",pass:"", welcome:true});
 		});
 	}
 	render() {
-		return (
-		<div>
-			<form className="form-group col-6" onSubmit={this.submit.bind(this)}>
-				<label> Email: </label>
-				<input name="email" className="form-control" value={this.state.email} onChange={this.change.bind(this)}/>
-				<label> Password: </label>
-				<input type="password" name="pass" className="form-control" value={this.state.pass} onChange={this.change.bind(this)}/>
-				<p></p>
-				<button className="form-control">submit</button>
-				{this.state.error? <p>{this.state.error.message}</p> : null }
-				<p>Don't have an account? <Link to='/signup'> Sign Up! </Link></p>
-				<button type="button" className="form-control" onClick={this.guestLogin.bind(this)}>Continue as Guest</button>
-			</form>
-		</div>);
+		if (!this.state.welcome) {
+			return (
+			<div>
+				<form className="form-group col-6" onSubmit={this.submit.bind(this)}>
+					<label> Email: </label>
+					<input name="email" className="form-control" value={this.state.email} onChange={this.change.bind(this)}/>
+					<label> Password: </label>
+					<input type="password" name="pass" className="form-control" value={this.state.pass} onChange={this.change.bind(this)}/>
+					<p></p>
+					<button className="form-control">submit</button>
+					{this.state.error? <p>{this.state.error.message}</p> : null }
+					<p>Don't have an account? <Link to='/signup'> Sign Up! </Link></p>
+					<button type="button" className="form-control" onClick={this.guestLogin.bind(this)}>Continue as Guest</button>
+				</form>
+			</div>);
+		}
+		else {
+			return <Welcome /> 
+		}
 	}
 }
 let mapStateToProps = function(state) {return {...state}};

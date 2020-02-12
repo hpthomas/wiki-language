@@ -1,10 +1,11 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import Welcome from './Welcome';
 class SignupForm extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {email:"", pass:"", showWelcome:false};
+		this.state = {email:"", pass:""};
 	}
 	submit(event) {
 		event.preventDefault();
@@ -14,7 +15,8 @@ class SignupForm extends React.Component {
 			.createUser(this.state.email, this.state.pass)
 				.then(authUser => {
 					this.props.firebase.setPrefs(this.props.prefs);
-					this.props.history.push("/home");
+					this.setState({welcome:true});
+					//this.props.history.push("/home");
 				})
 			.catch(error => {
 					this.setState({ error });
@@ -24,26 +26,31 @@ class SignupForm extends React.Component {
 		this.setState({[event.target.name]:event.target.value});
 	}
 	render() {
-		return (
-		<div className="container">
-			<div className="row">
-			<h3 className="col-sm-6 text-center">Register New Account</h3>
-			</div> 
-			<form className="form-group col-6" onSubmit={this.submit.bind(this)}>
-				<label> Email: </label>
-				<input name="email" className="form-control" value={this.state.email} onChange={this.change.bind(this)}/>
-				<label> Password: </label>
-				<input type="password" name="pass" className="form-control" value={this.state.pass} onChange={this.change.bind(this)}/>
-				<p></p>
-				<button className="form-control">submit</button>
-			</form>
-			{this.state.error? 
-				<div>
-					<h5>error!</h5>
-					{this.state.error.message}
+		if (!this.state.welcome) {
+			return (
+			<div className="container">
+				<div className="row">
+				<h3 className="col-sm-6 text-center">Register New Account</h3>
 				</div> 
-			: null}
-		</div>);
+				<form className="form-group col-6" onSubmit={this.submit.bind(this)}>
+					<label> Email: </label>
+					<input name="email" className="form-control" value={this.state.email} onChange={this.change.bind(this)}/>
+					<label> Password: </label>
+					<input type="password" name="pass" className="form-control" value={this.state.pass} onChange={this.change.bind(this)}/>
+					<p></p>
+					<button className="form-control">submit</button>
+				</form>
+				{this.state.error? 
+					<div>
+						<h5>error!</h5>
+						{this.state.error.message}
+					</div> 
+				: null}
+			</div>);
+		}
+		else {
+			return <Welcome />
+		}
 	}
 }
 
